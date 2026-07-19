@@ -1,0 +1,31 @@
+{% extends "bank/base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div style="text-align:center;">
+    <img src="{% static 'bank/images/dashboard-illustration.svg' %}" alt="Card" style="width:220px; margin-bottom:10px;">
+</div>
+
+<h2>Welcome, {{ user.username }}</h2>
+<p>Account Number: <strong>{{ account.account_number }}</strong> ({{ account.get_account_type_display }})</p>
+<p>Current Balance:</p>
+<p class="balance">${{ account.balance }}</p>
+
+<h3>Recent Transactions</h3>
+{% if recent_transactions %}
+<table>
+    <tr><th>Type</th><th>Amount</th><th>Balance After</th><th>Date</th></tr>
+    {% for t in recent_transactions %}
+    <tr>
+        <td>{{ t.get_transaction_type_display }}</td>
+        <td>${{ t.amount }}</td>
+        <td>${{ t.balance_after }}</td>
+        <td>{{ t.timestamp|date:"M d, Y H:i" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p><a href="{% url 'transaction_history' %}">View full history →</a></p>
+{% else %}
+<p>No transactions yet.</p>
+{% endif %}
+{% endblock %}

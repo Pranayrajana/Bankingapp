@@ -1,0 +1,24 @@
+{% extends "bank/base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div style="text-align:center;">
+    <img src="{% static 'bank/images/bank-illustration.svg' %}" alt="Bank" style="width:180px; margin-bottom:10px;">
+</div>
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+<p>New here? <a href="{% url 'register' %}">Create an account</a></p>
+{% endblock %}
+
+{% extends "bank/base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div style="text-align:center;">
+    <img src="{% static 'bank/images/bank-illustration.svg' %}" alt="Bank" style="width:180px; margin-bottom:10px;">
+</div>
+...
