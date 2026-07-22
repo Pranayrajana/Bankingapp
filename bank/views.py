@@ -1,11 +1,10 @@
 import uuid
-from decimal import Decimal
 
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db import transaction as db_transaction
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 
 from .forms import RegisterForm, DepositForm, WithdrawForm, TransferForm
 from .models import Account, Transaction
@@ -115,8 +114,6 @@ def transfer_view(request):
             elif amount > account.balance:
                 messages.error(request, "Insufficient balance.")
             else:
-                # Same reference on both sides links the two ledger rows
-                # together, so we can show "this is one transfer" in history.
                 reference = str(uuid.uuid4())[:8]
                 with db_transaction.atomic():
                     account.balance -= amount

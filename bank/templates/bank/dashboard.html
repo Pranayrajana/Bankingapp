@@ -3,7 +3,7 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
 <div style="text-align:center;">
-    <img src="/Users/pranay/Downloads/bankapp/bank/Static/Dashboard.jpg" alt="Card" style="width:220px; margin-bottom:10px;">
+   <img src="{% static 'bank/Dashboard.jpg' %}" alt="Dashboard" style="max-width:220px;">
 </div>
 
 <h2>Welcome, {{ user.username }}</h2>
