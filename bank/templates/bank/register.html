@@ -1,5 +1,8 @@
 {% extends "bank/base.html" %}
+{% load static %}
 {% block title %}Register{% endblock %}
+{% block body_style %}background-image:url('{% static "bank/login.jpg" %}');{% endblock %}
+{% block container_style %}position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); margin:0; background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); box-shadow:none;{% endblock %}
 {% block content %}
 <h2>Create your account</h2>
 <form method="post">
