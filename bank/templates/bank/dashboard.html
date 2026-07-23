@@ -1,11 +1,9 @@
 {% extends "bank/base.html" %}
 {% load static %}
 {% block title %}Dashboard{% endblock %}
+{% block body_style %}background-image:url('{% static "bank/banklogin.jpg" %}');{% endblock %}
+{% block container_style %}margin:30px 60px 30px auto;{% endblock %}
 {% block content %}
-<div style="text-align:center;">
-    <img src="/Users/pranay/Downloads/bankapp/bank/Static/Dashboard.jpg" alt="Card" style="width:220px; margin-bottom:10px;">
-</div>
-
 <h2>Welcome, {{ user.username }}</h2>
 <p>Account Number: <strong>{{ account.account_number }}</strong> ({{ account.get_account_type_display }})</p>
 <p>Current Balance:</p>
