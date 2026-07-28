@@ -1,7 +1,7 @@
 import uuid
 
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction as db_transaction
 from django.shortcuts import render, redirect
@@ -152,3 +152,18 @@ def transaction_history_view(request):
         "account": account,
         "transactions": transactions,
     })
+
+
+@login_required
+def delete_account_view(request):
+    if request.method == "POST":
+        username = request.user.username
+        user = request.user
+        # Log out first, then delete: on_delete=CASCADE on Account/Transaction
+        # means deleting the User wipes the bank account and its whole
+        # transaction history too.
+        logout(request)
+        user.delete()
+        messages.success(request, f"The account for '{username}' has been permanently deleted.")
+        return redirect("login")
+    return redirect("dashboard")

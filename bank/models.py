@@ -5,12 +5,6 @@ import uuid
 
 
 class Account(models.Model):
-    """
-    One bank Account per User.
-    We keep 'balance' as the single source of truth for how much money
-    a user has. Every deposit/withdraw/transfer updates this field
-    AND creates a Transaction record, so we always have a paper trail.
-    """
     ACCOUNT_TYPE_CHOICES = [
         ("SAVINGS", "Savings"),
         ("CURRENT", "Current"),
@@ -33,12 +27,6 @@ class Account(models.Model):
 
 
 class Transaction(models.Model):
-    """
-    Immutable log of every money movement.
-    For a transfer, we create TWO rows (one DEBIT for sender, one CREDIT
-    for receiver) linked by the same 'reference' so the history page can
-    show a full audit trail for both accounts.
-    """
     TRANSACTION_TYPES = [
         ("DEPOSIT", "Deposit"),
         ("WITHDRAW", "Withdraw"),
