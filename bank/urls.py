@@ -11,4 +11,5 @@ urlpatterns = [
     path("withdraw/", views.withdraw_view, name="withdraw"),
     path("transfer/", views.transfer_view, name="transfer"),
     path("history/", views.transaction_history_view, name="transaction_history"),
+    path("delete-account/", views.delete_account_view, name="delete_account"),
 ]

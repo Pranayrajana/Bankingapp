@@ -26,4 +26,11 @@
 {% else %}
 <p>No transactions yet.</p>
 {% endif %}
+
+<hr style="margin:30px 0; border:none; border-top:1px solid #ddd;">
+<form method="post" action="{% url 'delete_account' %}"
+      onsubmit="return confirm('Are you sure you want to permanently delete your account? This cannot be undone.');">
+    {% csrf_token %}
+    <button type="submit" class="danger-btn">Delete My Account</button>
+</form>
 {% endblock %}
